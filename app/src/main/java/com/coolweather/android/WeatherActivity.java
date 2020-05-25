@@ -52,7 +52,8 @@ public class WeatherActivity extends AppCompatActivity {
     public SwipeRefreshLayout swipeRefreshLayout;
     public DrawerLayout drawerLayout;
     private Button navButton;
-    private String weatherId;
+    private String weatherId;//这是id
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,6 +178,7 @@ public class WeatherActivity extends AppCompatActivity {
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
 
+
         for(Forecast forecast:weather.forecastList){    // 循环处理每天的天气信息
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
             // 加载布局
@@ -206,7 +208,6 @@ public class WeatherActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AutoUpdateService.class);
         startService(intent);
     }
-
     private void loadBingPic(){
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
